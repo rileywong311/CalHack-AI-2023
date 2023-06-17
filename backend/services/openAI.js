@@ -1,4 +1,5 @@
 const OpenAI = require('openai-api');
+const openai = new OpenAI(process.env.API_KEY);
 
 /** Gets a response from ChatGPT given a prompt.
  *  @param {*} prompt - The prompt.
@@ -17,4 +18,6 @@ async function getCompletion(prompt) {
         stream: false,
         stop: ['\n', "testing"]
     };
+    const response = await openai.complete(body);
+    return response.choices[0].text;
 }
