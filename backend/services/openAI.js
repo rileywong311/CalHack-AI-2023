@@ -1,23 +1,16 @@
-const OpenAI = require('openai-api');
-const openai = new OpenAI(process.env.API_KEY);
+import 'dotenv/config';
+import { Configuration, OpenAIApi } from 'openai';
+
+const configuration = new Configuration({apiKey: process.env.API_KEY});
+const openai = new OpenAIApi(configuration);
 
 /** Gets a response from ChatGPT given a prompt.
- *  @param {*} prompt - The prompt.
+ *  @param {string} prompt - The prompt.
  *  @returns {Promise<string>} - The PROMISE of a string so you better await that bih. */
-async function getCompletion(prompt) {
-    const body = {
-        engine: 'gpt-3.5-turbo',
-        prompt: prompt,
-        maxTokens: 5,
-        temperature: 0.9,
-        topP: 1,
-        presencePenalty: 0,
-        frequencyPenalty: 0,
-        bestOf: 1,
-        n: 1,
-        stream: false,
-        stop: ['\n', "testing"]
-    };
-    const response = await openai.complete(body);
-    return response.choices[0].text;
+export async function getCompletion(prompt) {
+    const chatCompletion = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [{role: "user", content: prompt}],
+    });
+    return chatCompletion.data.choices[0].message.content;
 }
