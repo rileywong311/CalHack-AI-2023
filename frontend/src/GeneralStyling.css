@@ -1,0 +1,21 @@
+/* @media screen and {max-width: 800px) {
+
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400;600;700&display=swap');
+
+
+html, body {
+  font-family: 'Titillium Web', 'Georgia', 'Arial';
+  --primary: #FFE5C2;
+  --secondary: #969986;
+  --background: #FFFAF4;
+}
+
+.big {
+  font-size: 3rem;
+}
+
+.small {
+  font-size: 1rem;
+}

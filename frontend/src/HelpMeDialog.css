@@ -1,0 +1,15 @@
+.open {
+  width: 200px;
+  border-radius: 999px;
+  background: #BAC198;
+  margin: auto;
+  padding: 5px;
+  transition: 0.75s;
+}
+
+.open:hover {
+  cursor: pointer;
+  /* width: 225px; */
+  transform: rotateX(10deg) rotateY(20deg);
+}
+
