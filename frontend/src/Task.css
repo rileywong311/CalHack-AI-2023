@@ -20,6 +20,11 @@
   transition: 0.25s;
 }
 
+
+.directions:hover {
+  cursor: pointer;
+}
+
 .next {
   margin: auto 15px auto;
   align-items: center;
