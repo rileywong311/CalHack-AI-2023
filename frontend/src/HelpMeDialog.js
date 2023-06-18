@@ -50,11 +50,15 @@ export default class HelpMeDialog extends React.Component {
   render() {
     return <>
       <div onClick={() => this.open()} className={`help shadow ${this.state.hideHelp ? "hide" : ""}`} style={{'text-align': 'center', 'color': 'var(--support2)'}}>
-        <p> Help Me </p>
+        <span style={{'font-size': '1.5rem'}}> Help Me </span>
       </div>
 
-      <dialog ref={this.dialog} onClick={() => this.close()}>
-        <div style={{'width': 'min(750px, 75vw)'}}>
+      <dialog ref={this.dialog}>
+        <div style={{'width': 'min(750px, 75vw)', 'position': 'relative'}}>
+          <div className="close" onClick={() => this.close()}>
+            close
+          </div>
+
           
           <img src="Logo.png" alt="logo" style={{'width': '50px', 'border-radius': '999px'}} />
 

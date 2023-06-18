@@ -4,7 +4,7 @@
   background: black;
   color: white;
   margin: auto;
-  padding: 5px;
+  padding: 10px;
   transition: 0.75s;
 }
 
@@ -27,4 +27,16 @@ textarea {
   border-radius: 4px;
   background-color: #f8f8f8;
   resize: none;
+}
+
+.close {
+  width: 50px;
+  background: var(--background);
+  position: absolute;
+  right: 0; border-radius: 999px;
+  text-align: center;
+}
+
+.close:hover {
+  cursor: pointer;
 }
