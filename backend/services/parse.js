@@ -11,7 +11,7 @@ export function parseRecipe(raw) {
     for (let current = lines.shift(); current !== "END RECIPE"; current = lines.shift()) {
         const words = current.split(" ");
         current = lines.shift();
-        const step = { category: words[1], time: words[2], description: current };
+        const step = { time: words[1], description: current };
         steps.push(step);
     }    
     return { name, steps };
