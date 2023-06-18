@@ -39,7 +39,9 @@ export default class App extends React.Component {
       .then(response => response.json())
       .then(data => {
         const { name, steps } = data;
-        this.setState({ dishName: name, steps, loaded: true });
+        const totalTime = steps.reduce((accumlator, step) => accumlator + Number(step.time), 0);
+        console.log(totalTime);
+        this.setState({ dishName: name, steps, totalTime: `${totalTime} Min`, loaded: true });
     })
   }
 
@@ -100,7 +102,7 @@ export default class App extends React.Component {
           <div className="clock-container shadow">
             <img src="clock.png" alt="clock" width="50%" style={{'margin': '15px auto 0px'}}/>
             <br />
-            <span style={{'color': 'var(--primary)', 'margin': 'auto'}}>50min</span>
+            <span style={{'color': 'var(--primary)', 'margin': 'auto'}}>{this.state.totalTime}</span>
           </div>
           <div style={{'width': '80%', 'margin': 'auto', 'text-align': 'center', 'padding-top': '100px'}}>
             {/* <Task completed ="true" first="true" />
