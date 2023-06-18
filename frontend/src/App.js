@@ -16,8 +16,11 @@ export default class App extends React.Component {
       // recipe page
       dishName: '<No Dish>',
       totalTime: '50min',
+      currentStep: -1,
       steps: [
-        {step: -1, directions: ''}
+        {step: 1, directions: '1'},
+        {step: 2, directions: '2'},
+        {step: 3, directions: '3'}
       ]
     };
 
@@ -42,16 +45,20 @@ export default class App extends React.Component {
   }
 
   loadSteps() {
-    let content = [];
-    for (let i = 0; i < this.state.steps.length; i++) {
-      const step = step[i];
-      content.push(<Task key={step.step}>{step.directions}</Task>);
-    }
-    return content;
+    return (
+      <>
+        {this.state.steps.map(step => (
+          <Task step={step.step} directions={step.directions} first={step.step == 1} last={step.step == this.state.steps.length} />
+        ))}
+      </>
+    );
   };
 
   render() {
     // this could be routered maybe
+
+    const data = this.loadSteps();
+
     if (!this.state.loaded) {
       return <>
         <div className="grid" style={{'margin': '50px'}}>
@@ -90,12 +97,13 @@ export default class App extends React.Component {
             <span style={{'color': 'var(--primary)', 'margin': 'auto'}}>50min</span>
           </div>
           <div style={{'width': '80%', 'margin': 'auto', 'text-align': 'center', 'padding-top': '100px'}}>
-            <Task completed ="true" first="true" />
+            {/* <Task completed ="true" first="true" />
             <Task completed ="true"/>
             <Task current="true" />
             <Task />
             <Task />
-            <Task last="false" />
+            <Task last="false" /> */}
+            {data}
           </div>
         </div>
         

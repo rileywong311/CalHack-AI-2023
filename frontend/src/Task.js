@@ -28,7 +28,10 @@ export default class Task extends React.Component {
           </svg>
         </span>
         <span className={`shadow directions ${this.state.completed ? "completed" : ""}`}>
-          H
+          <div style={{'padding': '15px 25px 15px', 'display': 'grid', 'grid-auto-rows': 'auto', 'text-align': 'left'}}>
+            <span><strong>Step {this.props.step}</strong></span>
+            <span>{this.props.directions}</span>
+          </div>
         </span>
         <span className="next">
           { this.props.current &&
