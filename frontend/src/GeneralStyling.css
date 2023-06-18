@@ -2,20 +2,28 @@
 
 } */
 
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400&display=swap');
 
 
 html, body {
   font-family: 'Titillium Web', 'Georgia', 'Arial';
   --primary: #FFE5C2;
-  --secondary: #969986;
+  --secondary: #ffeed7;
+  --support: #969986;
   --background: #FFFAF4;
+  background: var(--background);
 }
 
-.big {
-  font-size: 3rem;
+.big-text {
+  font-size: 5rem;
+  font-weight: 600;
 }
 
-.small {
+.small-text {
   font-size: 1rem;
+}
+
+.ai {
+  font-family: 'Source Code Pro', 'Titillium Web', 'Georgia', 'Arial';
 }

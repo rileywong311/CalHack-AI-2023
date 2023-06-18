@@ -43,9 +43,14 @@ export default class HelpMeDialog extends React.Component {
   render() {
     return <>
       <div onClick={() => this.open()} className="open" style={{'text-align': 'center'}}>
-        <p> Help Me </p>
+        <p className="medium-text"> Help Me </p>
       </div>
       <dialog ref={this.dialog} onClick={() => this.close()}>
+        <div style={{'width': 'min(800px, 80vw)', 'min-height': '250px', 'margin': '1.5rem 0 1.5rem', 'padding': '10px', 'background': 'white', 'border': '5px solid var(--primary)'}}>
+          <span className="small-text ai">
+            Ask me anything!
+          </span>
+        </div>
         <form onSubmit={this.handleSubmit} style={{'margin': '50px auto 50px', 'display': 'grid'}}>
           <h3>Input:</h3>
           <label>
