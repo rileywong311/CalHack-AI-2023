@@ -1,18 +1,44 @@
 .task-grid {
   display: grid;
-  grid-template-columns: 1fr 75% 1fr;
+  --size: min(600px, 65vw);
+  grid-template-columns: calc(var(--size) / 5) var(--size) calc(var(--size) / 7);
   grid-auto-rows: auto;
+  justify-content: center;
 }
 
 .completion {
+  /* margin: 0 40px 0; */
+  /* background: red; */
   grid-column: 1; 
 }
 
 .directions {
   grid-column: 2;
-
+  background: var(--primary);
+  border-radius: 30px;
+  margin: 25px 0 25px;  
 }
 
 .next {
+  margin: auto 15px auto;
+  align-items: center;
   grid-column: 3;
+}
+
+.task-grid circle {
+  fill: var(--background);
+  stroke: var(--support1);
+  stroke-width: 3px;
+}
+
+.task-grid circle.completed{
+  fill: var(--support1);
+}
+
+.directions.completed {
+  background: var(--support1);
+}
+
+.task-grid line {
+  stroke: var(--support1);
 }

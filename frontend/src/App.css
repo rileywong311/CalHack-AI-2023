@@ -4,3 +4,19 @@
   grid-auto-rows: auto;
   grid-auto-rows: auto;
 }
+
+.clock-container {
+  width: 125px;
+  height: 125px;
+  background: black;
+  border-radius: 999px;
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* display: grid; */
+  margin: 0 auto 0;
+  vertical-align: center;
+  text-align: center;
+}

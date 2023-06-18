@@ -3,7 +3,7 @@ import './App.css';
 import React from 'react'
 import HelpMeDialog from './HelpMeDialog.js'
 import ExpandMenu from './ExpandMenu.js'
-import InstructionsBox from './InstructionsBox.js'
+import Task from './Task.js'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -66,7 +66,21 @@ export default class App extends React.Component {
           </div>
         </div>
 
-        <InstructionsBox />
+        <div style={{'width': '100%', 'margin-top': '150px', 'background': 'var(--background)', 'position': 'relative'}}>
+          <div className="clock-container shadow">
+            <img src="clock.png" alt="clock" width="50%" style={{'margin': '15px auto 0px'}}/>
+            <br />
+            <span style={{'color': 'var(--primary)', 'margin': 'auto'}}>50min</span>
+          </div>
+          <div style={{'width': '80%', 'margin': 'auto', 'text-align': 'center', 'padding-top': '100px'}}>
+            <Task completed ="true" first="true" />
+            <Task completed ="true"/>
+            <Task current="true" />
+            <Task />
+            <Task />
+            <Task last="false" />
+          </div>
+        </div>
 
         {/* <div className="grid human" style={{'margin-bottom': '100px'}}>
           <div style={{'display': 'flex', 'flex-wrap': 'wrap', 'gap': '1rem', 'margin': '15px'}}>
@@ -80,6 +94,9 @@ export default class App extends React.Component {
         </div> */}
         <div style={{'width': '100%', 'padding-bottom': '20px', 'position': 'fixed', 'bottom': '0'}}>
           <HelpMeDialog />
+        </div>
+        <div  style={{'height': '100px'}}>
+
         </div>
       </>
     }
