@@ -103,7 +103,7 @@ export default class App extends React.Component {
       return <>
         <div className="grid">
           <div style={{'width': 'min(700px, 80vw)', 'margin-top': '50px'}}>
-            <span className="ai" style={{'font-size': '2rem'}}> Digital Cuisine Presents:</span>
+            <span className="ai" style={{'font-size': '2rem'}}> Gourm.ai presents:</span>
             <br />
             <span className="big-text human">{this.state.dishName}</span>
           </div>
