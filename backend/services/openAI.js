@@ -10,8 +10,8 @@ const openai = new OpenAIApi(configuration);
  *  @returns {Promise<string>} - The output from ChatGPT. */
 export async function getRecipe(food) {
     const chatCompletion = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
-        messages: [{role: "user", content: getPrompt(food)}],
+        model: "gpt-4",
+        messages: [{role: "user", content: getPrompt(food)}]
     });
     return chatCompletion.data.choices[0].message.content;
 }
