@@ -21,7 +21,7 @@ export default class ExpandMenu extends React.Component {
 
   render() {
     return <>
-      <div onClick={() => this.toggle()} className={`folder ${this.state.expanded ? "open" : ""}`}>
+      <div onClick={() => this.toggle()} className={`folder human ${this.state.expanded ? "open" : ""}`}>
         <span class="small-text"> {this.props.name} </span>
         <span>
           <svg width="30" height="30" style={{'display': 'float', 'float': 'right'}}>
