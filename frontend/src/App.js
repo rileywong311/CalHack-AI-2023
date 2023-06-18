@@ -57,10 +57,10 @@ export default class App extends React.Component {
           <hr style={{'width': '100%', 'margin': '25px 0 25px'}} />
           <div style={{'display': 'flex', 'flex-wrap': 'wrap', 'gap': '1rem', 'margin': '15px'}}>
             <span style={{'background': 'var(--secondary)', 'border-radius': '999px', 'padding': '0.75rem 1rem 0.75rem'}}>
-              Total Time: <strong>{this.state.totalTime}</strong>
+              Total Time: &nbsp; <span className="ai">{this.state.totalTime}</span>
             </span>
             <span style={{'background': 'var(--secondary)', 'border-radius': '999px', 'padding': '0.75rem 1rem 0.75rem'}}>
-              Prep Time: <strong>{this.state.prepTime}</strong>
+              Prep Time: &nbsp; <span className="ai">{this.state.prepTime}</span>
             </span>
           </div>
         </div>

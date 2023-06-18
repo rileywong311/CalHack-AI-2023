@@ -24,13 +24,26 @@ line.hidden {
   opacity: 0;
 }
 
-@media screen and (min-width: 800px) {
-  .folder:hover {
-    cursor: pointer;
-    width: 320px;
+
+.folder.open {
+  width: 320px;
+}
+
+
+
+@media screen and (max-width: 800px) {
+  .folder {
+    width: 230px;
   }
 
   .folder.open {
+    width: 270px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .folder:hover {
+    cursor: pointer;
     width: 320px;
   }
 }

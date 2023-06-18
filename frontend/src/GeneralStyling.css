@@ -16,18 +16,16 @@ html, body {
 }
 
 .big-text {
-  font-size: 5rem;
-}
-
-.small-text {
-  font-size: 1rem;
+  font-size: 5rem !important;
 }
 
 .ai {
   font-family: 'Source Code Pro', 'Titillium Web', 'Georgia', 'Arial';
+  font-size: 1rem !important;
 }
 
 .human {
   font-family: 'Caveat', 'Titillium Web', 'Georgia', 'Arial';
+  font-size: 1.375rem;
   font-weight: 700;
 }
