@@ -1,6 +1,8 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+
+import { addRecipe as add, getRecipe as get } from './services/fakeDB.js';
 import { getRecipe } from './services/openAI.js';
 import { parseRecipe } from './services/parse.js';
 
@@ -10,22 +12,19 @@ app.use(express.static('build'));
 app.use(cors());
 app.use(morgan('combined'));
 
-const recipes = {};
-
 app.get('/api/test', async (request, response) => {
-    return response.json(parseRecipe(await getRecipe("spaghetti and meatballs")))
+    return response.json(parseRecipe(await getRecipe("spaghetti and meatballs")));
 });
 
 app.get('/api/steps', async (request, response) => {
     const body = request.body;
     if (!body.food) return response.status(400).json({error: 'content missing'});
-    
-    // 1) Prompt GPT with recipes
-    // 2) Mangle it into a readable JSON for the frontend
-    // 3) Add recipe to the recipes list for future retrieval
-    // 4) PROFIT!
 
-    return response.json({})
+    const recipe = parseRecipe(await getRecipe(body.food));
+    if (!recipe) return response.status(500).json({error: "GPT could not generate the recipe"});
+
+    add(recipe);
+    return response.json(recipe);
 });
 
 app.get('/api/fix', async (request, response) => {
