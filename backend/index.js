@@ -12,7 +12,8 @@ app.use(express.static('build'));
 app.use(cors());
 app.use(morgan('combined'));
 
-app.get('/api/steps', async (request, response) => {
+app.post('/api/steps', async (request, response) => {
+    console.log("Serving /api/steps");
     const body = request.body;
     if (!body.food) return response.status(400).json({error: 'content missing'});
 
@@ -24,14 +25,13 @@ app.get('/api/steps', async (request, response) => {
     return response.json(recipe);
 });
 
-app.get('/api/fix', async (request, response) => {
+app.post('/api/fix', async (request, response) => {
+    console.log("Serving /api/fix");
     const body = request.body;
-    console.log(body)
     if (body.id === undefined || body.step === undefined) return response.status(400).json({error: 'content missing'});
 
     if (!get(body.id)) return response.status(404).json({error: "recipe not found"});
     const raw = await getFixedRecipe(get(body.id), body.step);
-    console.log(raw);
     add(raw);
 
     const recipe = parseRecipe(raw);
