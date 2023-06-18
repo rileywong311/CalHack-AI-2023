@@ -10,6 +10,7 @@ export default class App extends React.Component {
     super(props); //lets you use "this" in the class
     this.state = { 
       // load page
+      loading: false,
       loaded: false,
       loadRecipeData: '',
 
@@ -30,6 +31,9 @@ export default class App extends React.Component {
 
   loadRecipe() {
     const requestBody = { food: this.state.loadRecipeData };
+    this.setState(state => ({
+      loading: true,
+    }));
 
     fetch('http://localhost:3001/api/steps', {
       method: 'POST',
@@ -70,17 +74,28 @@ export default class App extends React.Component {
     if (!this.state.loaded) {
       return <>
         <div className="grid" style={{'margin': '50px'}}>
-          <span className="big-text human">Pick a dish:</span>
-          <form style={{'margin': '50px auto 50px', 'display': 'grid'}}>
-            <h3>Give me a recipe!</h3>
-            <label>
-              <textarea type="text" value={this.state.loadRecipeData} onChange={this.handleRecipeDataChange} class="box">
-                {this.state.text}
-              </textarea>
-            </label>
-            {/* <input type="submit" style={{'width': '100px', 'margin': 'auto', 'text-align': 'center'}}/> */}
-          </form>
-          <button onClick={() => this.loadRecipe()}>Pick</button>
+          { !this.state.loading && 
+          <>
+            <span className="big-text human">Pick a dish:</span>
+            <form style={{'margin': '50px auto 50px', 'display': 'grid'}}>
+              <h3>Give me a recipe!</h3>
+              <label>
+                <textarea type="text" value={this.state.loadRecipeData} onChange={this.handleRecipeDataChange} class="box">
+                  {this.state.text}
+                </textarea>
+              </label>
+            </form>
+            <button onClick={() => this.loadRecipe()}>Go!</button>
+          </>
+          }
+          { this.state.loading && 
+          <>
+            <img src="logo.png" alt="logo" className="loading-logo"/>
+            <br />
+            <h1 className="loading-dots">Thinking</h1>
+          </>
+          }
+
         </div>
       </>
     }

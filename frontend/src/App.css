@@ -20,3 +20,39 @@
   vertical-align: center;
   text-align: center;
 }
+
+.loading-logo {
+  animation: loading-logo 5s infinite;
+}
+
+@keyframes loading-logo {
+  0% {
+    transform: rotateZ(-20deg);
+  }
+  50% {
+    transform: rotateZ(20deg);
+  }
+  100% {
+    transform: rotateZ(-20deg);
+  }
+}
+
+.loading-dots::after {
+  content: '';
+  animation: loading-dots 2s infinite;
+}
+
+@keyframes loading-dots {
+  0% {
+    content: '';
+  }
+  25% {
+    content: '.';
+  }
+  50% {
+    content: '..';
+  }
+  75% {
+    content: '...';
+  }
+}
