@@ -42,7 +42,7 @@ export default class HelpMeDialog extends React.Component {
 
   render() {
     return <>
-      <div onClick={() => this.open()} className="open" style={{'text-align': 'center'}}>
+      <div onClick={() => this.open()} className="help" style={{'text-align': 'center'}}>
         <p className="medium-text"> Help Me </p>
       </div>
       <dialog ref={this.dialog} onClick={() => this.close()}>

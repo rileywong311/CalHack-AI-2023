@@ -1,4 +1,4 @@
-.open {
+.help {
   width: 200px;
   border-radius: 999px;
   background: black;
@@ -8,7 +8,7 @@
   transition: 0.75s;
 }
 
-.open:hover {
+.help:hover {
   cursor: pointer;
   /* width: 225px; */
   transform: rotateX(10deg) rotateY(20deg);

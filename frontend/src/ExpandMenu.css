@@ -13,7 +13,24 @@
   align-items: center;
 }
 
-.folder:hover {
-  width: 320px;
-  cursor: pointer;
+line {
+  transition: 0.25s !important;
+  opacity: 1;
+  stroke: black;
+  stroke-width: 3;
+}
+
+line.hidden {
+  opacity: 0;
+}
+
+@media screen and (min-width: 800px) {
+  .folder:hover {
+    cursor: pointer;
+    width: 320px;
+  }
+
+  .folder.open {
+    width: 320px;
+  }
 }
