@@ -14,9 +14,13 @@
   transform: rotateX(10deg) rotateY(20deg);
 }
 
+.help.hide {
+  opacity: 0;
+}
+
 textarea {
-  width: 300px;
-  height: 150px;
+  width: 250px;
+  height: 80px;
   padding: 12px 20px;
   box-sizing: border-box;
   border: 2px solid #ccc;
