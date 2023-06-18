@@ -77,6 +77,6 @@ export function getPrompt(food) {
  * @param {string} question - The question.
  * @returns {string} The prompt string. */
 export function getExplainingPrompt(recipe, question) {
-    const request = `With this in mind, given RECIPE\n${recipe}\n answer the following question.\n${question}`;
+    const request = `With this in mind, given RECIPE\n${recipe}\n answer the following question. Limit your response to be no more than 50 words.\n${question}`;
     return request;
 }

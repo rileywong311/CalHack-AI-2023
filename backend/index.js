@@ -2,7 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 
-import { addRecipe as add, getRecipe as get } from './services/fakeDB.js';
+import { addRecipe2 as add, getRecipe as get } from './services/fakeDB.js';
 import { getRecipe, getExplanation } from './services/openAI.js';
 import { parseRecipe } from './services/parse.js';
 

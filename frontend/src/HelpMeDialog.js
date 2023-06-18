@@ -41,6 +41,18 @@ export default class HelpMeDialog extends React.Component {
   };
 
   handleSubmit(event) {
+    const requestBody = { id: 0, question: this.state.text }
+
+    fetch('http://localhost:3001/api/explain', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestBody)
+    })
+      .then(response => response.json())
+      .then(data => {
+        this.setState({response: data.content})
+      })
+
     // console.log('Submitted ' + this.state.text);
     this.setState(state => ({
       text: '',
