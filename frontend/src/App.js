@@ -10,7 +10,7 @@ export default class App extends React.Component {
     super(props); //lets you use "this" in the class
     this.state = { 
       loaded: false,
-      dishName: 'No Dish',
+      dishName: '<No Dish>',
       totalTime: '50min',
       prepTime: '25min'
     };
@@ -34,6 +34,8 @@ export default class App extends React.Component {
       return <>
         <div className="grid">
           <div style={{'width': 'min(700px, 80vw)'}}>
+            <span style={{'font-size': '2rem', 'background': 'var(--primary'}}> Digital Cusine Presents:</span>
+            &emsp;
             <span class="big-text">{this.state.dishName}</span>
           </div>
           {/* <hr style={{'width': '100%', 'margin': '25px 0 25px'}} /> */}
