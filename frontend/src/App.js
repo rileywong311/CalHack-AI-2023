@@ -30,23 +30,25 @@ export default class App extends React.Component {
   };
 
   loadRecipe() {
-    const requestBody = { food: this.state.loadRecipeData };
-    this.setState(state => ({
-      loading: true,
-    }));
+    if (this.state.loadRecipeData !== '') {
+      const requestBody = { food: this.state.loadRecipeData };
+      this.setState(state => ({
+        loading: true,
+      }));
 
-    fetch('http://localhost:3001/api/steps', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(requestBody)
-    })
-      .then(response => response.json())
-      .then(data => {
-        const { name, steps } = data;
-        const totalTime = steps.reduce((accumlator, step) => accumlator + Number(step.time), 0);
-        console.log(totalTime);
-        this.setState({ dishName: name, steps, totalTime: `${totalTime} Min`, loaded: true });
-    })
+      fetch('http://localhost:3001/api/steps', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestBody)
+      })
+        .then(response => response.json())
+        .then(data => {
+          const { name, steps } = data;
+          const totalTime = steps.reduce((accumlator, step) => accumlator + Number(step.time), 0);
+          console.log(totalTime);
+          this.setState({ dishName: name, steps, totalTime: `${totalTime} Min`, loaded: true });
+      })
+    }
   }
 
   handleRecipeDataChange(event) {
@@ -85,7 +87,7 @@ export default class App extends React.Component {
                 </textarea>
               </label>
             </form>
-            <button onClick={() => this.loadRecipe()}>Go!</button>
+            <button onClick={() => this.loadRecipe()} style={{'width': '100px', 'margin': 'auto'}}>Go!</button>
           </>
           }
           { this.state.loading && 

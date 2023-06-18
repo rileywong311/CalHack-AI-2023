@@ -30,11 +30,8 @@ textarea {
 }
 
 .close {
-  width: 50px;
-  background: var(--support2);
   position: absolute;
-  right: 0; border-radius: 999px;
-  text-align: center;
+  right: 0;
 }
 
 .submit {
