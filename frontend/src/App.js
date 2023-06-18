@@ -18,9 +18,9 @@ export default class App extends React.Component {
       totalTime: '50min',
       currentStep: -1,
       steps: [
-        {step: 1, directions: '1'},
-        {step: 2, directions: '2'},
-        {step: 3, directions: '3'}
+        {time: 1, description: '1'},
+        {time: 2, description: '2'},
+        {time: 3, description: '3'}
       ]
     };
 
@@ -29,12 +29,18 @@ export default class App extends React.Component {
   };
 
   loadRecipe() {
-    // console.log(this.state.loadRecipeData)
-    this.setState(state => ({
-      loaded: true
-    }));
+    const requestBody = { food: this.state.loadRecipeData };
 
-    // .fetch
+    fetch('http://localhost:3001/api/steps', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestBody)
+    })
+      .then(response => response.json())
+      .then(data => {
+        const { name, steps } = data;
+        this.setState({ dishName: name, steps, loaded: true });
+    })
   }
 
   handleRecipeDataChange(event) {
@@ -47,8 +53,8 @@ export default class App extends React.Component {
   loadSteps() {
     return (
       <>
-        {this.state.steps.map(step => (
-          <Task step={step.step} directions={step.directions} first={step.step == 1} last={step.step == this.state.steps.length} />
+        {this.state.steps.map((step, i)=> (
+          <Task step={i+1} directions={step.description} first={step.step === 1} last={step.step === this.state.steps.length-1} />
         ))}
       </>
     );
