@@ -1,4 +1,4 @@
-GET http://localhost:3001/api/steps/ HTTP/1.1
+POST http://localhost:3001/api/steps/ HTTP/1.1
 content-type: application/json
 
 {
@@ -6,10 +6,10 @@ content-type: application/json
 }
 
 ###
-GET http://localhost:3001/api/fix/ HTTP/1.1
+POST http://localhost:3001/api/explain/ HTTP/1.1
 content-type: application/json
 
 {
     "id": 0,
-    "step": 5
+    "question": "Can you explain step 3 in more detail? How to whisk?"
 }
