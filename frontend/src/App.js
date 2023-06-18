@@ -10,22 +10,44 @@ export default class App extends React.Component {
     super(props); //lets you use "this" in the class
     this.state = { 
       loaded: false,
+      loadData: '',
       dishName: '<No Dish>',
       totalTime: '50min',
       prepTime: '25min'
     };
+
+    this.handleDataChange = this.handleDataChange.bind(this);
   };
 
   load() {
+    console.log(this.state.loadData)
     this.setState(state => ({
       loaded: true
     }));
   }
 
+  handleDataChange(event) {
+    this.setState(state => ({
+      loadData: event.target.value
+    }));
+    event.preventDefault();
+  }
+
   render() {
+    // this could be routered maybe
     if (!this.state.loaded) {
       return <>
         <div className="grid" style={{'margin': '50px'}}>
+          <span className="big-text human">Pick a dish:</span>
+          <form style={{'margin': '50px auto 50px', 'display': 'grid'}}>
+            <h3>Input:</h3>
+            <label>
+              <textarea type="text" value={this.state.loadData} onChange={this.handleDataChange} class="box">
+                {this.state.text}
+              </textarea>
+            </label>
+            {/* <input type="submit" style={{'width': '100px', 'margin': 'auto', 'text-align': 'center'}}/> */}
+          </form>
           <button onClick={() => this.load()}>Pick</button>
         </div>
       </>
