@@ -16,7 +16,7 @@ export default class App extends React.Component {
       // recipe page
       dishName: '<No Dish>',
       totalTime: '50min',
-      currentStep: -1,
+      // currentStep: -1,
       steps: [
         {time: 1, description: '1'},
         {time: 2, description: '2'},
