@@ -1,1 +1,10 @@
 GET http://localhost:3001/api/test/
+
+###
+GET http://localhost:3001/api/fix/ HTTP/1.1
+content-type: application/json
+
+{
+    "id": 0,
+    "step": 5
+}
