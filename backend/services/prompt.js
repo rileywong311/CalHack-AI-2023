@@ -1,9 +1,3 @@
-const categories = [
-    "PREPARE", "CUT", "SLICE", "DICE", "MIX", "WHISK", "BEAT", "STIR", "FOLD", "BOIL",
-    "SIMMER", "FRY", "GRILL", "ROAST", "BAKE", "SAUTE", "SEAR", "MARINATE", "BLANCH",
-    "BASTE", "SERVE", "LAYER", "INVERT", "REMOVE", "MELT", "COAT"
-].join(",");
-
 const introduction = [
     "You are a AI chef assistant.",
     "Your tone is friendly, helpful, and guiding.",
@@ -17,7 +11,6 @@ const stepFormat = [
     "and END STEP which indicate the end of the format.",
 
     "BEGIN STEP",
-    `[A word from the list (${categories}) that best describes the step]`,
     "[Time needed for the step in minutes; only give a number] MINUTES",
     "[A description of the step]",
     "END STEP"
@@ -46,27 +39,27 @@ const example = [
     "BEGIN RECIPE",
     "RECIPE NAME: Monkey Bread",
     "STEPS:",
-    "1. PREPARE 10 MINUTES",
+    "1. 10 MINUTES",
     "Gather all the ingredients: 2 cans of refrigerated biscuit dough, 1 cup granulated sugar, 2 teaspoons cinnamon, 1/2 cup unsalted butter, 3/4 cup brown sugar, and cooking spray.",
-    "2. PREHEAT 0 MINUTES",
+    "2. 0 MINUTES",
     "Preheat your oven to 350°F (180°C) and grease a bundt pan with cooking spray.",
-    "3. CUT 10 MINUTES",
+    "3. 10 MINUTES",
     "Cut each of the refrigerated biscuit dough pieces into quarters.",
-    "4. MIX 5 MINUTES",
+    "4. 5 MINUTES",
     "In a medium-sized bowl, mix together granulated sugar and cinnamon.",
-    "5. COAT 10 MINUTES",
+    "5. 10 MINUTES",
     "Roll each dough quarter in the cinnamon-sugar mixture to coat it evenly.",
-    "6. LAYER 5 MINUTES",
+    "6. 5 MINUTES",
     "Arrange the coated dough quarters evenly inside the greased bundt pan.",
-    "7. MELT 3 MINUTES",
+    "7. 3 MINUTES",
     "In a small saucepan, melt the butter and brown sugar over medium heat. Once melted and combined, remove from heat.",
-    "8. POUR 2 MINUTES",
+    "8. 2 MINUTES",
     "Pour the melted butter and brown sugar mixture evenly over the dough quarters in the bundt pan.",
-    "9. BAKE 35 MINUTES",
+    "9. 35 MINUTES",
     "Bake the monkey bread for 30-35 minutes, until golden brown and cooked through.",
-    "10. REMOVE 5 MINUTES",
+    "10. 5 MINUTES",
     "Allow the monkey bread to cool in the pan for 5 minutes before inverting onto a serving plate.",
-    "11. SERVE 0 MINUTES",
+    "11. 0 MINUTES",
     "Serve warm and enjoy!",
     "END RECIPE"
 ].join("\n");

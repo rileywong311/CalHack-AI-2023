@@ -12,15 +12,6 @@ app.use(express.static('build'));
 app.use(cors());
 app.use(morgan('combined'));
 
-app.get('/api/test', async (request, response) => {
-    const raw = await getRecipe("spagheeti and meatballs");
-    add(raw);
-
-    const recipe = parseRecipe(raw);
-    if (!recipe) return response.status(500).json({error: "GPT could not generate the recipe"});
-    return response.json(recipe);
-});
-
 app.get('/api/steps', async (request, response) => {
     const body = request.body;
     if (!body.food) return response.status(400).json({error: 'content missing'});
