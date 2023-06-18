@@ -54,7 +54,7 @@ export default class App extends React.Component {
     return (
       <>
         {this.state.steps.map((step, i)=> (
-          <Task step={i+1} directions={step.description} first={step.step === 1} last={step.step === this.state.steps.length-1} />
+          <Task step={i+1} directions={step.description} first={i === 0} last={i === this.state.steps.length-1} />
         ))}
       </>
     );
