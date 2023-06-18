@@ -42,8 +42,9 @@ export default class HelpMeDialog extends React.Component {
   handleSubmit(event) {
     console.log('Submitted ' + this.state.text);
     this.setState(state => ({
-      text: ''
+      text: '',
     }));
+    this.close();
     event.preventDefault();
   }
 
@@ -55,7 +56,7 @@ export default class HelpMeDialog extends React.Component {
 
       <dialog ref={this.dialog}>
         <div style={{'width': 'min(750px, 75vw)', 'position': 'relative'}}>
-          <div className="close" onClick={() => this.close()}>
+          <div className="close shadow" onClick={() => this.close()}>
             close
           </div>
 
@@ -74,7 +75,7 @@ export default class HelpMeDialog extends React.Component {
                 {this.state.text}
               </textarea>
             </label>
-            <input type="submit" style={{'width': '100px', 'margin': 'auto', 'text-align': 'center'}}/>
+            <input type="submit" className="shadow submit"/>
           </form>
         </div>
       </dialog>

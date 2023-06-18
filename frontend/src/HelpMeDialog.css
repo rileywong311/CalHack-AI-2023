@@ -31,12 +31,22 @@ textarea {
 
 .close {
   width: 50px;
-  background: var(--background);
+  background: var(--support2);
   position: absolute;
   right: 0; border-radius: 999px;
   text-align: center;
 }
 
-.close:hover {
+.submit {
+  width: 100px;
+  margin: auto;
+  text-align: center;
+  background: var(--support2);
+  border: 0;
+  border-radius: 999px;
+}
+
+.close:hover,
+.submit:hover {
   cursor: pointer;
 }
