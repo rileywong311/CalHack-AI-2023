@@ -1,7 +1,8 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import { getCompletion } from './services/openAI.js';
+import { getRecipe } from './services/openAI.js';
+import { parseRecipe } from './services/parse.js';
 
 const app = express();
 app.use(express.json());
@@ -12,7 +13,7 @@ app.use(morgan('combined'));
 const recipes = {};
 
 app.get('/api/test', async (request, response) => {
-    return response.json({content: await getCompletion("Hello, world!")})
+    return response.json(parseRecipe(await getRecipe("spaghetti and meatballs")))
 });
 
 app.get('/api/steps', async (request, response) => {

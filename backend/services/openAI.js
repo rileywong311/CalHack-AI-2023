@@ -1,16 +1,17 @@
 import 'dotenv/config';
 import { Configuration, OpenAIApi } from 'openai';
+import { getPrompt } from './prompt.js';
 
 const configuration = new Configuration({apiKey: process.env.API_KEY});
 const openai = new OpenAIApi(configuration);
 
-/** Gets a response from ChatGPT given a prompt.
- *  @param {string} prompt - The prompt.
- *  @returns {Promise<string>} - The PROMISE of a string so you better await that bih. */
-export async function getCompletion(prompt) {
+/** Gets a recipe from ChatGPT.
+ *  @param {string} food - The food that the user requested a recipe for.
+ *  @returns {Promise<string>} - The output from ChatGPT. */
+export async function getRecipe(food) {
     const chatCompletion = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
-        messages: [{role: "user", content: prompt}],
+        model: "gpt-4",
+        messages: [{role: "user", content: getPrompt(food)}]
     });
     return chatCompletion.data.choices[0].message.content;
 }
