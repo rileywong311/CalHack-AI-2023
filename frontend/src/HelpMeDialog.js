@@ -8,6 +8,7 @@ export default class HelpMeDialog extends React.Component {
     this.state = { 
       text: ' ',
       hideHelp: false,
+      response: 'Ask me anything!'
     };
 
     this.open = this.open.bind(this);
@@ -32,7 +33,7 @@ export default class HelpMeDialog extends React.Component {
   }
 
   handleChange(event) {
-    console.log("DEBUG: change")
+    // console.log("DEBUG: change")
     this.setState(state => ({
       text: event.target.value
     }));
@@ -40,11 +41,11 @@ export default class HelpMeDialog extends React.Component {
   };
 
   handleSubmit(event) {
-    console.log('Submitted ' + this.state.text);
+    // console.log('Submitted ' + this.state.text);
     this.setState(state => ({
       text: '',
     }));
-    this.close();
+    // this.close();
     event.preventDefault();
   }
 
@@ -56,16 +57,16 @@ export default class HelpMeDialog extends React.Component {
 
       <dialog ref={this.dialog}>
         <div style={{'width': 'min(750px, 75vw)', 'position': 'relative'}}>
-          <div className="close" onClick={() => this.close()}>
-            <button>close</button>
+          <div className="close" >
+            <button onClick={() => this.close()} style={{'width':'60px'}}>close</button>
           </div>
 
           
           <img src="Logo.png" alt="logo" style={{'width': '50px', 'border-radius': '999px'}} />
 
-          <div style={{'width': '90%', 'height': '250px', 'margin': '0.5rem auto 1rem', 'padding': '10px', 'border': '3px solid black'}}>
+          <div style={{'width': '90%', 'height': '200px', 'margin': '0.5rem auto 1rem', 'padding': '10px', 'border': '3px solid black'}}>
             <span className="small-text ai">
-              Ask me anything!
+              {this.state.response}
             </span>
           </div>
           <form style={{'margin': '0.5rem auto 0.5rem', 'display': 'grid', 'justify-content': 'center'}}>
@@ -75,7 +76,7 @@ export default class HelpMeDialog extends React.Component {
                 {this.state.text}
               </textarea>
             </label>
-            <button onClick={this.handleSubmit} style={{'width':'100px', 'margin': 'auto'}}>Submit</button>
+            <button onClick={this.handleSubmit} style={{'width':'100px', 'margin': '10px auto'}}>Submit</button>
           </form>
         </div>
       </dialog>
