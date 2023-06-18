@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { Configuration, OpenAIApi } from 'openai';
-import { getPrompt, getFixingPrompt } from './prompt.js';
+import { getPrompt, getExplainingPrompt } from './prompt.js';
 
 const configuration = new Configuration({apiKey: process.env.API_KEY});
 const openai = new OpenAIApi(configuration);
@@ -16,14 +16,14 @@ export async function getRecipe(food) {
     return chatCompletion.data.choices[0].message.content;
 }
 
-/** Fixes a recipe using ChatGPT.
- *  @param {string} recipe - The recipe to fix.
- *  @param {number} step - The step to fix the recipe from.
+/** Explains a recipe step using ChatGPT.
+ *  @param {string} recipe - The recipe to explain.
+ *  @param {string} question - The question about the recipe.
  *  @returns {Promise<string>} - The output from ChatGPT. */
-export async function getFixedRecipe(recipe, step) {
+export async function getExplanation(recipe, question) {
     const chatCompletion = await openai.createChatCompletion({
         model: "gpt-4",
-        messages: [{role: "user", content: getFixingPrompt(recipe, step)}]
+        messages: [{role: "user", content: getExplainingPrompt(recipe, question)}]
     });
     return chatCompletion.data.choices[0].message.content;
 }

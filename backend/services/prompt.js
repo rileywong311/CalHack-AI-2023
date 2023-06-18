@@ -72,22 +72,11 @@ export function getPrompt(food) {
     return [introduction, stepFormat, recipeFormat, conclusion, example, request].join("");
 }
 
-const introduction2 = [
-    "You are a AI chef assistant.",
-    "Your tone is friendly, helpful, and guiding.",
-    "You will be prompted to fix a given RECIPE starting from a specified STEP where the USER has to skip it.",
-].join("\n");
-
-const conclusion2 = [
-    "You are to rewrite the given RECIPE starting from the specified STEP.",
-    "The rewrite must only follow the RECIPE format as well."
-]
-
-/** Gets the prompt to feed into ChatGPT to fix the recipe.
- * @param {string} recipe - The recipe that needs to be realigned.
- * @param {number} step - The step that the recipe stopped at.
+/** Gets the prompt to feed into ChatGPT to explain a recipe step in more detail.
+ * @param {string} recipe - The recipe that is being analyzed.
+ * @param {string} question - The question.
  * @returns {string} The prompt string. */
-export function getFixingPrompt(recipe, step) {
-    const request = `With this in mind, fix the RECIPE starting at STEP ${step}.\nThe RECIPE to fix is\n${recipe}`;
-    return [introduction2, stepFormat, recipeFormat, example, conclusion2, request].join("");
+export function getExplainingPrompt(recipe, question) {
+    const request = `With this in mind, given RECIPE\n${recipe}\n answer the following question.\n${question}`;
+    return request;
 }
