@@ -21,16 +21,24 @@ export default class App extends React.Component {
         <div style={{'width': 'min(700px, 80vw)'}}>
           <span class="big-text">{this.state.dishName}</span>
         </div>
-        <hr style={{'width': '100%'}} />
+        {/* <hr style={{'width': '100%', 'margin': '25px 0 25px'}} /> */}
         <div style={{'width': 'min(700px, 80vw)'}}>
           <ExpandMenu name="Overview:" />
           <ExpandMenu name="Ingredients:" />
         </div>
-        <hr style={{'width': '100%'}} />
+        {/* <hr style={{'width': '100%', 'margin': '25px 0 25px'}} /> */}
       </div>
-
       <div className="main">
-        <div style={{'display': 'flex', 'flex-wrap': 'wrap', 'gap': '1rem'}}>
+        {/* <div style={{'width': 'min(750px, 90vw)', 'margin': '25px 0 0', 'padding': '25px', 'background': 'var(--secondary)'}}>
+          ⚠️ Notice: 
+        </div> */}
+        <div style={{'width': 'min(850px, 80vw)', 'height': '500px', 'margin': '25px 0 25px', 'padding': '25px', 'background': 'var(--primary)'}}>
+    
+        </div>
+      </div>
+      <div className="main" style={{'margin-bottom': '100px'}}>
+        <hr style={{'width': '100%', 'margin': '25px 0 25px'}} />
+        <div style={{'display': 'flex', 'flex-wrap': 'wrap', 'gap': '1rem', 'margin': '15px'}}>
           <span style={{'background': 'var(--secondary)', 'border-radius': '999px', 'padding': '0.75rem 1rem 0.75rem'}}>
             Total Time: <strong>{this.state.totalTime}</strong>
           </span>
@@ -39,15 +47,8 @@ export default class App extends React.Component {
           </span>
         </div>
       </div>
-      <div className="main">
-        <div style={{'width': 'min(1000px, 90vw)', 'height': '1000px', 'margin': '25px', 'background': 'white'}}>
-
-        </div>
-      </div>
-      <div className="main">
-        <div style={{'width': 'min(1000px, 90vw)'}}>
-          <HelpMeDialog />
-        </div>
+      <div style={{'width': '100%', 'padding-bottom': '20px', 'position': 'fixed', 'bottom': '0'}}>
+        <HelpMeDialog />
       </div>
     </>
   };
