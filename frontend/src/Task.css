@@ -17,6 +17,7 @@
   background: var(--primary);
   border-radius: 30px;
   margin: 25px 0 25px;  
+  transition: 0.25s;
 }
 
 .next {
@@ -29,6 +30,7 @@
   fill: var(--background);
   stroke: var(--support1);
   stroke-width: 3px;
+  transition: 0.25s;
 }
 
 .task-grid circle.completed{
