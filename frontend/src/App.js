@@ -10,6 +10,7 @@ export default class App extends React.Component {
     super(props); //lets you use "this" in the class
     this.state = { 
       // load page
+      loading: false,
       loaded: false,
       loadRecipeData: '',
 
@@ -29,20 +30,25 @@ export default class App extends React.Component {
   };
 
   loadRecipe() {
-    const requestBody = { food: this.state.loadRecipeData };
+    if (this.state.loadRecipeData !== '') {
+      const requestBody = { food: this.state.loadRecipeData };
+      this.setState(state => ({
+        loading: true,
+      }));
 
-    fetch('http://localhost:3001/api/steps', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(requestBody)
-    })
-      .then(response => response.json())
-      .then(data => {
-        const { name, steps } = data;
-        const totalTime = steps.reduce((accumlator, step) => accumlator + Number(step.time), 0);
-        console.log(totalTime);
-        this.setState({ dishName: name, steps, totalTime: `${totalTime} Min`, loaded: true });
-    })
+      fetch('http://localhost:3001/api/steps', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestBody)
+      })
+        .then(response => response.json())
+        .then(data => {
+          const { name, steps } = data;
+          const totalTime = steps.reduce((accumlator, step) => accumlator + Number(step.time), 0);
+          console.log(totalTime);
+          this.setState({ dishName: name, steps, totalTime: `${totalTime} Min`, loaded: true });
+      })
+    }
   }
 
   handleRecipeDataChange(event) {
@@ -70,17 +76,28 @@ export default class App extends React.Component {
     if (!this.state.loaded) {
       return <>
         <div className="grid" style={{'margin': '50px'}}>
-          <span className="big-text human">Pick a dish:</span>
-          <form style={{'margin': '50px auto 50px', 'display': 'grid'}}>
-            <h3>Give me a recipe!</h3>
-            <label>
-              <textarea type="text" value={this.state.loadRecipeData} onChange={this.handleRecipeDataChange} class="box">
-                {this.state.text}
-              </textarea>
-            </label>
-            {/* <input type="submit" style={{'width': '100px', 'margin': 'auto', 'text-align': 'center'}}/> */}
-          </form>
-          <button onClick={() => this.loadRecipe()}>Pick</button>
+          { !this.state.loading && 
+          <>
+            <span className="big-text human">Pick a dish:</span>
+            <form style={{'margin': '50px auto 50px', 'display': 'grid'}}>
+              <h3>Give me a recipe!</h3>
+              <label>
+                <textarea type="text" value={this.state.loadRecipeData} onChange={this.handleRecipeDataChange} class="box">
+                  {this.state.text}
+                </textarea>
+              </label>
+            </form>
+            <button onClick={() => this.loadRecipe()} style={{'width': '100px', 'margin': 'auto'}}>Go!</button>
+          </>
+          }
+          { this.state.loading && 
+          <>
+            <img src="logo.png" alt="logo" className="loading-logo"/>
+            <br />
+            <h1 className="loading-dots">Thinking</h1>
+          </>
+          }
+
         </div>
       </>
     }
@@ -88,7 +105,7 @@ export default class App extends React.Component {
       return <>
         <div className="grid">
           <div style={{'width': 'min(700px, 80vw)', 'margin-top': '50px'}}>
-            <span className="ai" style={{'font-size': '2rem'}}> Digital Cuisine Presents:</span>
+            <span className="ai" style={{'font-size': '2rem'}}> Gourm.ai presents:</span>
             <br />
             <span className="big-text human">{this.state.dishName}</span>
           </div>
