@@ -30,9 +30,9 @@ export default class ExpandMenu extends React.Component {
           </svg>
         </span>
       </div>
-      <div>
-        {this.state.expanded &&
-          <p>contents</p>
+      <div className={"human"} style={{'overflow': 'hidden'}}>
+        { this.state.expanded &&
+          <p> content </p>
         }
       </div>
     </>
