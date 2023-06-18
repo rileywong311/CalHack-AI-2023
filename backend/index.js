@@ -3,7 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 
 import { addRecipe as add, getRecipe as get } from './services/fakeDB.js';
-import { getRecipe } from './services/openAI.js';
+import { getRecipe, getFixedRecipe } from './services/openAI.js';
 import { parseRecipe } from './services/parse.js';
 
 const app = express();
@@ -13,29 +13,39 @@ app.use(cors());
 app.use(morgan('combined'));
 
 app.get('/api/test', async (request, response) => {
-    return response.json(parseRecipe(await getRecipe("spaghetti and meatballs")));
+    const raw = await getRecipe("spagheeti and meatballs");
+    add(raw);
+
+    const recipe = parseRecipe(raw);
+    if (!recipe) return response.status(500).json({error: "GPT could not generate the recipe"});
+    return response.json(recipe);
 });
 
 app.get('/api/steps', async (request, response) => {
     const body = request.body;
     if (!body.food) return response.status(400).json({error: 'content missing'});
 
-    const recipe = parseRecipe(await getRecipe(body.food));
-    if (!recipe) return response.status(500).json({error: "GPT could not generate the recipe"});
+    const raw = await getRecipe(body.food);
+    add(raw);
 
-    add(recipe);
+    const recipe = parseRecipe(raw);
+    if (!recipe) return response.status(500).json({error: "GPT could not generate the recipe"});
     return response.json(recipe);
 });
 
 app.get('/api/fix', async (request, response) => {
     const body = request.body;
-    if (!body.id || !body.step || !body.reason) return response.status(400).json({error: 'content missing'});
+    console.log(body)
+    if (body.id === undefined || body.step === undefined) return response.status(400).json({error: 'content missing'});
 
-    // 1) Prompt GPT with the recipe retrieved from ID along with messed up step and reason
-    // 2) Get its new recipe and update the old recipe
-    // 3) PROFIT!
+    if (!get(body.id)) return response.status(404).json({error: "recipe not found"});
+    const raw = await getFixedRecipe(get(body.id), body.step);
+    console.log(raw);
+    add(raw);
 
-    return response.json({})
+    const recipe = parseRecipe(raw);
+    if (!recipe) return response.status(500).json({error: "GPT could not generate the recipe"});
+    return response.json(recipe);
 });
 
 const PORT = 3001;
