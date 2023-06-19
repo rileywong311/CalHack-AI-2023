@@ -1,16 +1,21 @@
 # Technical Details
 
-API Key:
+## API Key:
 Change `.env-example` file to `.env` and assign `API_Key` to your OpenAI API key.
 
-Run backend: 
+## Run backend: 
 ```
 node index.js
 ```
 
-Run frontend:
+## Run frontend:
 ```
 npm run start
+```
+
+## To install packages:
+```
+npm install
 ```
 
 <hr />
